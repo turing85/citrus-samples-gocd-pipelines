@@ -6,7 +6,7 @@ pipelines:
     lock_behavior: none
     materials:
       build:
-        pipeline: build-samples
+        pipeline: install-samples
         stage: install
         name: install
     stages:
