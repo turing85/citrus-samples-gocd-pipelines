@@ -40,26 +40,3 @@ pipelines:
                     command: mvn
                     working_directory: citrus-samples
                     run_if: passed
-            it-citrus-java-sample-behaviors:
-              timeout: 0
-              elastic_profile_id: mvnContainer
-              tasks:
-                - fetch:
-                    is_file: false
-                    source: citrus-samples
-                    destination: ''
-                    pipeline: build-samples
-                    stage: installTodoApp
-                    job: InstallTodoApp
-                    artifact_origin: gocd
-                    run_if: passed
-                - exec:
-                    arguments:
-                      - verify
-                      - -Dembedded
-                      - -pl
-                      - :citrus-java-sample-behaviors
-                      - -Dmaven.repo.local=.m2
-                    command: mvn
-                    working_directory: citrus-samples
-                    run_if: passed
