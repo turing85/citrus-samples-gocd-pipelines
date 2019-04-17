@@ -7,8 +7,8 @@ pipelines:
     materials:
       build:
         pipeline: build-samples
-        stage: installTodoApp
-        name: build
+        stage: install
+        name: install
     stages:
       - it-samples:
           fetch_materials: true
