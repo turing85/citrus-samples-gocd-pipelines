@@ -86,3 +86,66 @@ pipelines:
                 command: mvn
                 working_directory: blogpage
                 run_if: passed
+  it-samples:
+    group: citrus-samples
+    label_template: ${COUNT}
+    lock_behavior: none
+    materials:
+      build:
+        pipeline: build-samples
+        stage: installTodoApp
+        name: build
+    stages:
+      - it-samples:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: success
+          jobs:
+            it-citrus-java-sample-annotation-config:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: build-samples
+                    stage: installTodoApp
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-annotation-config
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
+            it-citrus-java-sample-behaviors:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: build-samples
+                    stage: installTodoApp
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-behaviors
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
