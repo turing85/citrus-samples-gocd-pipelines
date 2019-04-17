@@ -26,7 +26,7 @@ pipelines:
                     source: citrus-samples
                     destination: ''
                     pipeline: install-samples
-                    stage: installTodoApp
+                    stage: install
                     job: InstallTodoApp
                     artifact_origin: gocd
                     run_if: passed

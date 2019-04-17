@@ -19,7 +19,7 @@ pipelines:
           approval:
             type: success
           jobs:
-            install:
+            installTodoApp:
               timeout: 0
               elastic_profile_id: mvnContainer
               artifacts:
