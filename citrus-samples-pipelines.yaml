@@ -353,3 +353,47 @@ pipelines:
                     command: mvn
                     working_directory: citrus-samples
                     run_if: passed
+  publish-samples:
+    group: citrus-samples
+    label_template: ${COUNT}
+    lock_behavior: none
+    materials:
+      build:
+        pipeline: it-samples
+        stage: it-samples
+        name: it
+    stages:
+      - publish:
+          fetch_materials: true
+          artifacts:
+            - build:
+                source: citrus-samples/todo-app/target*.jar
+                destination: 'artifacts'
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: success
+          jobs:
+            publish:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: install-samples
+                    stage: install
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-annotation-config
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
