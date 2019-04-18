@@ -393,11 +393,7 @@ pipelines:
                     run_if: passed
                 - exec:
                     arguments:
-                      - verify
-                      - -Dembedded
-                      - -pl
-                      - :citrus-java-sample-annotation-config
-                      - -Dmaven.repo.local=.m2
-                    command: mvn
+                      - -lisa
+                    command: ls
                     working_directory: citrus-samples
                     run_if: passed
