@@ -371,7 +371,10 @@ pipelines:
           fetch_materials: true
           artifacts:
             - build:
-                source: citrus-samples/todo-app/target/*.jar
+                source: citrus-samples/todo-app/target/citrus-sample-todo-2.8.0-executable.jar
+                destination: deployment
+            - build:
+                source: citrus-samples/todo-app/target/citrus-sample-todo-2.8.0.jar
                 destination: deployment
           keep_artifacts: false
           clean_workspace: false
