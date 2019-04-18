@@ -359,6 +359,10 @@ pipelines:
     lock_behavior: none
     materials:
       build:
+        pipeline: install-samples
+        stage: install
+        name: install
+      it:
         pipeline: it-samples
         stage: it-samples
         name: it
