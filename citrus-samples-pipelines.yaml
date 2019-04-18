@@ -100,3 +100,141 @@ pipelines:
                     command: mvn
                     working_directory: citrus-samples
                     run_if: passed
+            it-citrus-java-sample-binary:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: install-samples
+                    stage: install
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-binary
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
+            it-citrus-java-sample-camel-context:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: install-samples
+                    stage: install
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-camel-context
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
+            it-citrus-java-sample-disctionaries:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: install-samples
+                    stage: install
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-dictionaries
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
+            it-citrus-java-sample-docker:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: install-samples
+                    stage: install
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-docker
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
+            it-citrus-java-sample-dynamic-endpoints:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: install-samples
+                    stage: install
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-dynamic-endpoints
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
+            it-citrus-java-sample-hamcrest:
+              timeout: 0
+              elastic_profile_id: mvnContainer
+              tasks:
+                - fetch:
+                    is_file: false
+                    source: citrus-samples
+                    destination: ''
+                    pipeline: install-samples
+                    stage: install
+                    job: InstallTodoApp
+                    artifact_origin: gocd
+                    run_if: passed
+                - exec:
+                    arguments:
+                      - verify
+                      - -Dembedded
+                      - -pl
+                      - :citrus-java-sample-hamcrest
+                      - -Dmaven.repo.local=.m2
+                    command: mvn
+                    working_directory: citrus-samples
+                    run_if: passed
