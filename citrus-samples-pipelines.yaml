@@ -397,7 +397,6 @@ pipelines:
                 - exec:
                     arguments:
                       - -lisa
-                      - todo-app/target/
+                      - citrus-samples/todo-app/target/
                     command: ls
-                    working_directory: citrus-samples
                     run_if: passed
